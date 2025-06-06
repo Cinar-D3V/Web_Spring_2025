@@ -1,0 +1,27 @@
+ 
+     
+      nav {
+        background-color: #333;
+        padding: 10px 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+      }
+  
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-right: 15px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+  
+      nav a:hover {
+        text-decoration: underline;
+      }
+  
+      body {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }

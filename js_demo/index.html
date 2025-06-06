@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hocus pocus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>My website</h1>
+
+    <input id="name" placeholder="name?">
+    <button onclick="pun()">Greet Me</button>
+
+    <p id="fly"></p>
+
+    <embed id="shronk" style="height: 0px; width: 0px;" src="https://scenexe2.io/">
+    <img id="aparation" style="height: 50px; width: 50px;" src="images/sceneexe2.webp">
+
+    <br>
+
+    <img id="eparation" style="height: 50px; width: auto;" src="images/littlebigsnake.webp">
+    <embed id="snok" style="height: 0px; width: 0px;" src="https://littlebigsnake.com/">
+
+    <br>
+    <br>
+
+    <button onclick="begin()">Question</button>
+    
+    <br>
+
+    <button onclick="size()">thing 0.5</button>
+    <button onclick="thing1()">Thing1</button>
+    <button onclick="thing2()">Thing 2</button>
+    <button onclick="thing3()">Thing 3</button>
+
+
+    <script>
+        //alert("Enter your name");
+
+        document.getElementById("aparation").addEventListener("click", function () {
+            document.getElementById("shronk").style.width = "700px";
+            document.getElementById("shronk").style.height = "384px";
+            this.style.width = "0px";
+            this.style.height = "0px";
+        });
+
+        document.getElementById("eparation").addEventListener("click", function () {
+            document.getElementById("snok").style.width = "700px";
+            document.getElementById("snok").style.height = "384px";
+            this.style.width = "0px";
+            this.style.height = "0px";
+        });
+
+
+        function size() {
+            document.getElementById("fly").innerHTML = "Dough Dough Doughnuuuuuut";
+        }
+
+        function pun() {
+            let nameInput = document.getElementById("name").value;
+            let message = "Hi " + nameInput + ", welcome to my website!";
+            document.getElementById("fly").innerHTML = message;
+            alert(message); // secondary popup
+        }
+
+        function begin() {
+            let p = prompt("How many doughnuts could a Kumail eat if a Kumail could eat doughnuts?");
+            if (p !== null) {
+                alert (p + "? That's not even close!");
+            }
+        }
+
+        function thing1() {
+            document.getElementById("fly").innerHTML = "ellll primoooo";
+        }
+
+        function thing2() {
+            document.getElementById("fly").innerHTML = "caw caaaawww";
+        }
+
+        function thing3() {
+            document.getElementById("fly").innerHTML = "I was praaawwnn ready";
+        }
+
+        document.querySelector("input").addEventListener("keydown", function(event){
+            if (event.key === "Enter"){
+                let name = document.getElementById("name").value;
+                let hiii = "Hi " + name + ", welcome to my website!";
+                alert(hiii);
+                document.getElementById("fly").innerHTML = 'click the buttons below'
+            }
+        });
+    </script>
+</body>
+</html>

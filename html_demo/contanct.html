@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact information</title>
+    <style>
+         #sidebar {
+            width: 0;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #ff80ab;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            box-shadow: 2px 0 10px #000000;
+        }
+
+        #sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        #sidebar a:hover {
+            background-color: #ff4081;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #ff80ab;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ff80ab;
+            border-radius: 10px;
+        }
+        ol {
+            text-align: center;
+            list-style-position: inside;
+            display: inline-block;
+            margin: 0px auto;
+            padding: 0;
+        }
+
+        li {
+            padding: 0px 0;
+        }
+    </style>
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+    </script>
+</head>
+<body>
+
+    <button class="menu-button" onclick="openSidebar()">☰</button>
+
+    <div id="sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contanct.html">Contact</a>
+        <a href="doughnut.html">Doughnut Game</a>
+    </div>
+    <div class="container">
+        <div class="text">
+            <h1>You can contanct us using the following:</h1>
+            <ol>
+                <li>cgokbulut@eastsideprep.org</li>
+                <li>[425] 531-6968</li>
+            </ol>    
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css demo</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<!--Hi Ms. Hollingshead, the password is x=3-->
+<body>
+    <h1>CSS Demo</h1>
+    <button onclick="show()">hint</button>
+    <input id="password" placeholder="example: x=7; x=9 ">
+    <button onclick="check()">enter</button>
+
+    <script>
+    function check() {
+        let a = document.getElementById("password").value;
+        if (a === "x=3") {
+            alert("correct");
+            window.location.href = "real_page.html"; 
+        } else {
+            alert("incorrect password");
+        }
+    }
+
+    function show() {
+        alert("x^3-9x^2+27x-27")
+    }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brawler List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="charcter_list.html">character list</a>
+    <a href="images.html">images</a>
+  </nav>
+  <br> 
+  <br>
+  <br>
+  <h1>Brawler List</h1>
+  <a onclick="alert('Click a brawler once if you have him, twice if you dont')">[i]</a>
+
+  <p>Brawl Stars is a fun and fast paced game with lots of different brawlers that you can play with in game. Each brawler has their own attacks and play style. They are sorted into groups called classes, like Tanks, Marksmen, Assassins, and Support. Tanks, like Bull and El Primo, have lots of health and can take a lot of damage without dieing, but usually only use close range attacks, so they are hard to aproach enemies with. Marksmen, such as Piper and Bea, are great at hitting enemies from far away, but have low health, making them easy to kill if aproached. Assassins, like Leon, move quickly and deal big damage fast, but they only do damage in bursts, so can't handle enemies in groups. Support brawlers like Poco or Byron help their team by healing or boosting them, but they deal low damage, making killing enemies hards. These classes make the game exciting and full of cool strategies.</p>
+
+  <h2>A</h2>
+  <div class="amber">Amber</div>
+  <div class="ash">Ash</div>
+
+  <h2>B</h2>
+  <div class="byron">Byron</div>
+  <div class="bea">Bea</div>
+  <div class="buzz">Buzz</div>
+  <div class="buster">Buster</div>
+  <div class="belle">Belle</div>
+  <div class="bibi">Bibi</div>
+  <div class="bo">Bo</div>
+  <div class="barley">Barley</div>
+  <div class="bull">Bull</div>
+  <div class="bonnie">Bonnie</div>
+  <div class="brock">Brock</div>
+
+  <h2>C</h2>
+  <div class="carl">Carl</div>
+  <div class="crow">Crow</div>
+  <div class="chester">Chester</div>
+  <div class="colette">Colette</div>
+  <div class="colt">Colt</div>
+  <div class="cordelius">Cordelius</div>
+  <div class="chuck">Chuck</div>
+
+  <h2>D</h2>
+  <div class="darryl">Darryl</div>
+  <div class="dynamike">Dynamike</div>
+  <div class="doug">Doug</div>
+
+  <h2>E</h2>
+  <div class="edgar">Edgar</div>
+  <div class="eve">Eve</div>
+  <div class="emz">Emz</div>
+  <div class="el-primo">El Primo</div>
+
+  <h2>F</h2>
+  <div class="frank">Frank</div>
+  <div class="fang">Fang</div>
+
+  <h2>G</h2>
+  <div class="gus">Gus</div>
+  <div class="grom">Grom</div>
+  <div class="gale">Gale</div>
+  <div class="griff">Griff</div>
+  <div class="gene">Gene</div>
+  <div class="gray">Gray</div>
+
+  <h2>H</h2>
+  <div class="hank">Hank</div>
+
+  <h2>J</h2>
+  <div class="janet">Janet</div>
+  <div class="jacky">Jacky</div>
+  <div class="jessie">Jessie</div>
+
+  <h2>L</h2>
+  <div class="lola">Lola</div>
+  <div class="lou">Lou</div>
+  <div class="leon">Leon</div>
+
+  <h2>M</h2>
+  <div class="meg">Meg</div>
+  <div class="mandy">Mandy</div>
+  <div class="maisie">Maisie</div>
+  <div class="max">Max</div>
+  <div class="mortis">Mortis</div>
+  <div class="mr-p">Mr. P</div>
+
+  <h2>N</h2>
+  <div class="nita">Nita</div>
+  <div class="nani">Nani</div>
+
+  <h2>O</h2>
+  <div class="otis">Otis</div>
+
+  <h2>P</h2>
+  <div class="pam">Pam</div>
+  <div class="piper">Piper</div>
+  <div class="penny">Penny</div>
+  <div class="poco">Poco</div>
+  <div class="pearl">Pearl</div>
+
+  <h2>R</h2>
+  <div class="r-t">R-T</div>
+  <div class="rico">Rico</div>
+  <div class="rosa">Rosa</div>
+  <div class="ruffs">Ruffs</div>
+
+  <h2>S</h2>
+  <div class="sam">Sam</div>
+  <div class="stu">Stu</div>
+  <div class="surge">Surge</div>
+  <div class="sandy">Sandy</div>
+  <div class="shelly">Shelly</div>
+  <div class="sprout">Sprout</div>
+  <div class="squeak">Squeak</div>
+  <div class="spike">Spike</div>
+
+  <h2>T</h2>
+  <div class="tick">Tick</div>
+  <div class="tara">Tara</div>
+
+  <h2>W</h2>
+  <div class="willow">Willow</div>
+
+  <h2>8</h2>
+  <div id="bit8" class="eight-bit">8-Bit</div>
+
+  <img src="images/brawl.png" style="height: 50px;">
+
+    <script>
+        var Batu = document.querySelectorAll('div');
+        for (var thom = 0; thom < Batu.length; thom++) {
+        Batu[thom].onclick = function () {
+            if (this.textContent.includes('✔')) {
+                this.textContent = this.textContent.replace('✔', '❌');
+            } 
+            else if (this.textContent.includes('❌')) {
+                this.textContent = this.textContent.replace('❌', '');
+            } 
+            else {
+                this.textContent += ' ✔';
+            }
+        };
+        }
+
+    </script>
+</body>
+</html>

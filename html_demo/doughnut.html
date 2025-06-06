@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinar | Doughnut Heaven</title>
+  <link rel="icon" type="image/x-icon" href="images/doughnut.jpg">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8d7da;
+      color: #8b2c46;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar Menu */
+    #sidebar {
+      width: 0;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #d63384;
+      overflow-x: hidden;
+      transition: width 0.3s ease;
+      padding-top: 60px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #sidebar a {
+      padding: 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+      color: white;
+      display: block;
+      transition: background 0.3s ease;
+    }
+
+    #sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: white;
+    }
+
+    /* Menu & Shop Buttons */
+    .round-button {
+      position: fixed;
+      top: 15px;
+      width: 50px;
+      height: 50px;
+      background: #d63384;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .round-button:hover {
+      transform: scale(1.1);
+    }
+
+    .menu-button {
+      left: 15px;
+    }
+
+    .shop-button {
+      right: 15px;
+    }
+
+    /* Game Section */
+    .game-container {
+      flex-grow: 1;
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .image img {
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .image img:hover {
+      transform: scale(1.05);
+    }
+
+    #money-counter {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 20px;
+      background: #d63384;
+      color: white;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    /* Shop Section */
+    .shop {
+      width: 320px;
+      background: white;
+      position: fixed;
+      right: -320px;
+      top: 0;
+      height: 100%;
+      padding: 20px;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      transition: right 0.3s ease-in-out;
+      border-left: 5px solid #d63384;
+    }
+
+    .shop.open {
+      right: 0;
+    }
+
+    .shop h2 {
+      text-align: center;
+      color: white;
+      background: #d63384;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .shop-item {
+      background: #f8d7da;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .shop-item button {
+      background: #d63384;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+
+    .shop-item button:hover {
+      background: #a21a68;
+    }
+
+    .close-shop {
+      background: #d63384;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .close-shop:hover {
+      background: #a21a68;
+    }
+  </style>
+  <script>
+    let money = 0;
+    let clickValue = 1;
+    let autoClickerActive = false;
+
+    let multiplierCost = 10;
+    let autoClickerCost = 50;
+
+    let multiplierCount = 0;
+    let autoClickerCount = 0;
+
+    function earnMoney() {
+      money += clickValue;
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById("money-counter").innerText = "Money: $" + money;
+      document.getElementById("multiplier-cost").innerText = "($" + multiplierCost + ")";
+      document.getElementById("autoclicker-cost").innerText = "($" + autoClickerCost + ")";
+      document.getElementById("multiplier-count").innerText = "Owned: " + multiplierCount;
+      document.getElementById("autoclicker-count").innerText = "Owned: " + autoClickerCount;
+    }
+
+    function buyMultiplier() {
+      if (money >= multiplierCost) {
+        money -= multiplierCost;
+        clickValue *= 2;
+        multiplierCost *= 2;
+        multiplierCount++;
+        updateUI();
+      }
+    }
+
+    function buyAutoClicker() {
+      if (money >= autoClickerCost) {
+        money -= autoClickerCost;
+        autoClickerCost *= 2;
+        autoClickerCount++;
+
+        if (!autoClickerActive) {
+          autoClickerActive = true;
+          startAutoClicker();
+        }
+        updateUI();
+      }
+    }
+
+    function startAutoClicker() {
+      setInterval(() => {
+        money += clickValue;
+        updateUI();
+      }, 1000);
+    }
+
+    function toggleShop() {
+      document.getElementById("shop").classList.toggle("open");
+    }
+
+    function openSidebar() {
+      document.getElementById("sidebar").style.width = "250px";
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").style.width = "0";
+    }
+  </script>
+</head>
+<body>
+  <button class="round-button menu-button" onclick="openSidebar()">☰</button>
+  <button class="round-button shop-button" onclick="toggleShop()">🛒</button>
+
+  <div id="sidebar">
+    <button class="close-btn" onclick="closeSidebar()">×</button>
+    <a href="index.html">Home</a>
+  </div>
+
+  <div class="game-container">
+    <div id="money-counter">Money: $0</div>
+    <div class="image">
+      <img src="images/doughnut.jpg" alt="Delicious Doughnut" onclick="earnMoney()">
+    </div>
+  </div>
+
+  <div id="shop" class="shop">
+    <h2>Shop</h2>
+    <div class="shop-item">
+      <p>Multiplier (Doubles click value) <span id="multiplier-cost">($10)</span></p>
+      <p id="multiplier-count">Owned: 0</p>
+      <button onclick="buyMultiplier()">Buy</button>
+    </div>
+    <div class="shop-item">
+      <p>Auto Clicker (+1/sec) <span id="autoclicker-cost">($50)</span></p>
+      <p id="autoclicker-count">Owned: 0</p>
+      <button onclick="buyAutoClicker()">Buy</button>
+    </div>
+    <button class="close-shop" onclick="toggleShop()">Close Shop</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color:#430c1f;
+            margin-left: 500px;
+            margin-right: 500px;
+            border: #ff80ab;
+        }
+        .text {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ff80ab;
+            border-radius: 10px;
+        }
+         #sidebar {
+            width: 0;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #ff80ab;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            box-shadow: 2px 0 10px #000000;
+        }
+
+        #sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        #sidebar a:hover {
+            background-color: #ff4081;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #ff80ab;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+    </script>
+</head>
+<body>
+
+    <button class="menu-button" onclick="openSidebar()">☰</button>
+
+    <div id="sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contanct.html">Contact</a>
+        <a href="doughnut.html">Doughnut Game</a>
+    </div>
+<div class="container">
+    <div class="text">
+        <h1>About us</h1>
+        <summary style="cursor: pointer;">Please take time to read about the Kumajilly religeos group.</summary>
+        <div id="reveal" class="pad-box-mini border-round" style="border: thin solid rgb(255, 255, 255);">
+        <h2>Who are we?</h2>
+        <p>
+        The Kumajilly doughnut foundation is a high profit group who was founded by Kumail Mukadam and Alex Xu. As time pased Kumajillyism became a big part of the everyday life of many people. Soon, Ranks formed inside of the orginization,the highest bieng a Silly Jilly Priest, and the lowest bieng -------. Our mission is to create a better world by overpricing doughnuts and causing inflation.
+        </p>
+        <a href="https://www.swimcloud.com/swimmer/1782043/" target="_blank"><p>to learn more about Kumajilly and his swimming, click here!</p></a>
+    </div>
+</div>

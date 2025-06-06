@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Big Snake - No Self Collision</title>
+<style>
+  body {
+    background: #0a0a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    user-select: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+    flex-direction: column;
+  }
+  canvas {
+    background: #121224;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #3af;
+  }
+  #score {
+    margin: 15px;
+    font-size: 1.5rem;
+    color: #3af;
+    text-shadow: 0 0 10px #3af;
+  }
+  #gameOver {
+    font-size: 2rem;
+    color: #ff4444;
+    display: none;
+    margin: 10px 0;
+  }
+  #restartBtn {
+    background: #3af;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #121224;
+    cursor: pointer;
+    display: none;
+  }
+  #restartBtn:hover {
+    background: #27f;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="game" width="600" height="400"></canvas>
+<div id="score">Score: 0</div>
+<div id="gameOver">Game Over!</div>
+<button id="restartBtn">Restart</button>
+
+<script>
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+
+  const scoreEl = document.getElementById('score');
+  const gameOverEl = document.getElementById('gameOver');
+  const restartBtn = document.getElementById('restartBtn');
+
+  const WIDTH = canvas.width;
+  const HEIGHT = canvas.height;
+
+  let snake = [];
+  const snakeRadius = 10;
+  let direction = { x: 1, y: 0 };
+  let speed = 3;
+  let food = null;
+  let score = 0;
+  let gameOver = false;
+
+  function resetSnake() {
+    snake = [];
+    const startX = WIDTH / 2;
+    const startY = HEIGHT / 2;
+    for(let i = 0; i < 10; i++) {
+      snake.push({ x: startX - i * snakeRadius * 2.2, y: startY });
+    }
+  }
+
+  function placeFood() {
+    food = {
+      x: Math.random() * (WIDTH - snakeRadius * 2) + snakeRadius,
+      y: Math.random() * (HEIGHT - snakeRadius * 2) + snakeRadius,
+      radius: snakeRadius,
+      color: '#3af'
+    };
+  }
+
+  function drawCircle(pos, radius, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function distance(p1, p2) {
+    return Math.sqrt((p1.x-p2.x)**2 + (p1.y-p2.y)**2);
+  }
+
+  function moveSnake() {
+    const head = snake[0];
+    let newHead = {
+      x: head.x + direction.x * speed,
+      y: head.y + direction.y * speed
+    };
+
+    // Wall collision (game over)
+    if (
+      newHead.x < snakeRadius || newHead.x > WIDTH - snakeRadius ||
+      newHead.y < snakeRadius || newHead.y > HEIGHT - snakeRadius
+    ) {
+      gameOver = true;
+      return;
+    }
+
+    // *** Removed self-collision check ***
+
+    snake.unshift(newHead);
+
+    if (distance(newHead, food) < snakeRadius * 2) {
+      score++;
+      scoreEl.textContent = 'Score: ' + score;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+  }
+
+  let mousePos = { x: WIDTH/2, y: HEIGHT/2 };
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mousePos.x = e.clientX - rect.left;
+    mousePos.y = e.clientY - rect.top;
+  });
+
+  window.addEventListener('keydown', e => {
+    if(e.key === 'ArrowUp') direction = { x: 0, y: -1 };
+    else if(e.key === 'ArrowDown') direction = { x: 0, y: 1 };
+    else if(e.key === 'ArrowLeft') direction = { x: -1, y: 0 };
+    else if(e.key === 'ArrowRight') direction = { x: 1, y: 0 };
+  });
+
+  function updateDirection() {
+    const head = snake[0];
+    let angle = Math.atan2(mousePos.y - head.y, mousePos.x - head.x);
+    direction.x = Math.cos(angle);
+    direction.y = Math.sin(angle);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    drawCircle(food, food.radius, food.color);
+
+    for(let i = snake.length - 1; i > 0; i--) {
+      let segment = snake[i];
+      let nextSegment = snake[i - 1];
+      segment.x += (nextSegment.x - segment.x) * 0.1;
+      segment.y += (nextSegment.y - segment.y) * 0.1;
+      drawCircle(segment, snakeRadius, '#0af');
+    }
+    drawCircle(snake[0], snakeRadius, '#0ff');
+  }
+
+  function gameLoop() {
+    if(gameOver) {
+      gameOverEl.style.display = 'block';
+      restartBtn.style.display = 'inline-block';
+      return;
+    }
+    updateDirection();
+    moveSnake();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  function startGame() {
+    score = 0;
+    scoreEl.textContent = 'Score: 0';
+    gameOver = false;
+    gameOverEl.style.display = 'none';
+    restartBtn.style.display = 'none';
+    resetSnake();
+    placeFood();
+    gameLoop();
+  }
+
+  restartBtn.addEventListener('click', startGame);
+
+  startGame();
+</script>
+
+</body>
+</html>
